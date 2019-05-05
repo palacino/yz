@@ -1,0 +1,9 @@
+div.plot
+{
+    width: 800px;
+}
+p.caption
+{
+    font-style: italic;
+    text-align: center;
+}

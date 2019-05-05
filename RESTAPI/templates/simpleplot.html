@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ plot_title }}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+</head>
+<body>
+ <div class="plot">
+        <img src={{ url_for('static', filename=plot_url) }} alt="Chart">
+        <p class="caption">{{ plot_caption }}</p>
+    </div>
+</body>
+</html>

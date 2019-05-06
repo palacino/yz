@@ -15,6 +15,22 @@ class KNNAnomalyDetector:
             print('Could not initialize anomaly detector: {}'.format(e))
             raise e
 
+    def check_list(self, points, n_neighbors=10, threshold=0.5):
+        n_points, _ = points.shape
+        is_anomaly_results = np.zeros(n_points)
+        score_results = np.zeros(n_points)
+        query_time_results = np.zeros(n_points)
+        message_results = [''] * n_points
+
+        for i in range(n_points):
+            is_anomaly, score, message, query_time = self.detect_anomaly(points[i], n_neighbors, threshold)
+            is_anomaly_results[i] = is_anomaly
+            score_results[i] = score
+            query_time_results[i] = query_time
+            message_results[i] = message
+
+        return is_anomaly_results, score_results, message_results, query_time_results
+
     def detect_anomaly(self, point, n_neighbors=10, threshold=0.5):
 
         is_anomaly = -1

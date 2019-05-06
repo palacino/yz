@@ -1,5 +1,4 @@
 from mykdtree import MyKDTree
-import time
 import numpy as np
 from scipy.spatial import kdtree
 

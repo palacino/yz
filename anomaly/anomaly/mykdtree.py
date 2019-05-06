@@ -13,6 +13,9 @@ class MyKDTree:
         all_indices = np.array(range(self.__nr))
         self.__root = self.__build_tree(data, all_indices, 0)
 
+    def root(self):
+        return self.__root
+
     # Build the tree recursively, each time splitting the remaining data according to the median value
     # found in a different dimension. We keep track of the ids of the data points (indices).
     def __build_tree(self, data, real_indices, depth):
@@ -51,7 +54,7 @@ class MyKDTree:
             distances[i] = math.sqrt(nearest_neighbors[i][0])
             node_ids[i] = nearest_neighbors[i][1][0]
 
-        return [distances, node_ids]
+        return distances, node_ids
 
     # The main recursive procedure.
     def __query_node(self, priority_queue, n_smallest, point, node, n):

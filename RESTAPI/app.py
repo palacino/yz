@@ -1,8 +1,9 @@
 from flask import Flask
 from flask import request
 from flask import render_template
+from flask import jsonify
 from configurator import Configurator
-from anomaly.featuregenerator import FeatureGenerator
+from inputprocessor import InputProcessor
 import os
 
 app = Flask(__name__, template_folder='./templates')
@@ -17,29 +18,38 @@ def hello_world():
     return 'Hello World!'
 
 
-@app.route('/check/', methods=['GET'])
-def check_point():
-    x = request.args.get('x', type=str)
-    y = request.args.get('y', type=int)
-    is_anomaly, score, message, query_time = anomaly_detector.detect_anomaly((x, y))
+@app.route('/check', methods=['GET'])
+def check_point_get():
+    try:
+        x = request.args.get('x', type=float)
+        y = request.args.get('y', type=float)
+        is_anomaly, score, message, query_time = anomaly_detector.detect_anomaly([x, y])
+        return jsonify({'is_anomaly': is_anomaly, 'score': score, 'message': message, 'query_time': query_time})
+    except Exception:
+        return jsonify({'is_anomaly': -1, 'score': -1.0, 'message': 'bad request', 'query_time': -1.0})
 
 
-@app.route('/demoplot/', methods=['GET'])
-def generate_plot():
-    plot_url, plot_title, plot_caption = plot_generator.generate_demo()
-    return render_template('simpleplot.html', plot_url=plot_url, plot_title=plot_title,
-                           plot_caption=plot_caption)
+@app.route('/check', methods=['POST'])
+def check_point_post():
+    try:
+        req_data = request.get_json()
+        point_data = InputProcessor.build_point_list_from_json(req_data)
+        is_anomaly, score, message, query_time = anomaly_detector.check_list(point_data)
+        return jsonify({'is_anomaly': list(is_anomaly), 'score': list(score), 'message': list(message),
+                        'query_time': list(query_time)})
+    except Exception:
+        return jsonify({'is_anomaly': -1, 'score': -1.0, 'message': 'bad request', 'query_time': -1.0})
 
 
-@app.route('/randomplot/', methods=['GET'])
-def generate_random_plot():
-    noise_type = request.args.get('type', type=str)
-    n = request.args.get('n', type=int)
-    scale = request.args.get('scale', type=int)
-    uniform_noise = FeatureGenerator.generate(noise_type, n, scale)
-    plot_url, plot_title, plot_caption = plot_generator.generate_plot(uniform_noise, 'uniform data', 'uniform data')
-    return render_template('simpleplot.html', plot_url=plot_url, plot_title=plot_title,
-                           plot_caption=plot_caption)
+# @app.route('/randomplot/', methods=['GET'])
+# def generate_random_plot():
+#     noise_type = request.args.get('type', type=str)
+#     n = request.args.get('n', type=int)
+#     scale = request.args.get('scale', type=int)
+#     uniform_noise = FeatureGenerator.generate(noise_type, n, scale)
+#     plot_url, plot_title, plot_caption = plot_generator.generate_plot(uniform_noise, 'uniform data', 'uniform data')
+#     return render_template('simpleplot.html', plot_url=plot_url, plot_title=plot_title,
+#                            plot_caption=plot_caption)
 
 
 def cleanup_temp_folder():

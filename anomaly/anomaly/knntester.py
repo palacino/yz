@@ -29,11 +29,17 @@ point = [3.0, 2.5]
 anomaly_detector = KNNAnomalyDetector(ref_file_path, search_type='kdtree')
 is_anomaly, score, message, query_time = anomaly_detector.detect_anomaly(point, n_neighbors=n_neighbors)
 
-print('point {}: is_anomaly={}, score={}, message={}, query time={:.5f}s'.format(point, is_anomaly, score, message,
+print('scipy   : point {}: is_anomaly={}, score={}, message={}, query time={:.5f}s'.format(point, is_anomaly, score, message,
                                                                                  query_time))
 
 anomaly_detector = KNNAnomalyDetector(ref_file_path, search_type='mykdtree')
 is_anomaly, score, message, query_time = anomaly_detector.detect_anomaly(point, n_neighbors=n_neighbors)
 
-print('point {}: is_anomaly={}, score={}, message={}, query time={:.5f}s'.format(point, is_anomaly, score, message,
+print('mykdtree: point {}: is_anomaly={}, score={}, message={}, query time={:.5f}s'.format(point, is_anomaly, score, message,
+                                                                                 query_time))
+
+anomaly_detector = KNNAnomalyDetector(ref_file_path, search_type='brute-force')
+is_anomaly, score, message, query_time = anomaly_detector.detect_anomaly(point, n_neighbors=n_neighbors)
+
+print('brute   : point {}: is_anomaly={}, score={}, message={}, query time={:.5f}s'.format(point, is_anomaly, score, message,
                                                                                  query_time))

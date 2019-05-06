@@ -13,9 +13,10 @@ flask run
 this will start a flask server on 127.0.0.1:5000
 
 exposing the following REST API:
- - GET /      -> http://127.0.0.1:5000/
- - GET /check -> http://127.0.0.1:5000/check?x=3.0&y=2.5
- - GET /check -> http://127.0.0.1:5000/check?x=30.0&y=2.5
+ - GET /      -> http://127.0.0.1:5000/ (hello flask!)
+ - GET /check -> http://127.0.0.1:5000/check?x=3.0&y=2.5 (returns json for a normal point)
+ - GET /check -> http://127.0.0.1:5000/check?x=30.0&y=2.5 (returns json for an anomaly)
+ - GET /check -> http://127.0.0.1:5000/check?x=3.0&y=2.5&format=html (return html page with a plot showing the query point)
 
  - POST http://127.0.0.1:5000/check
 {

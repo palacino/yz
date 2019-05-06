@@ -13,17 +13,17 @@ flask run
 this will start a flask server on 127.0.0.1:5000
 
 exposing the following REST API:
-GET /      -> http://127.0.0.1:5000/
-GET /check -> http://127.0.0.1:5000/check?x=3.0&y=2.5
-GET /check -> http://127.0.0.1:5000/check?x=30.0&y=2.5
+ - GET /      -> http://127.0.0.1:5000/
+ - GET /check -> http://127.0.0.1:5000/check?x=3.0&y=2.5
+ - GET /check -> http://127.0.0.1:5000/check?x=30.0&y=2.5
 
-POST http://127.0.0.1:5000/check
+ - POST http://127.0.0.1:5000/check
 {
 	"x": 2.0,
 	"y": 3.0
 }
 
-POST http://127.0.0.1:5000/check
+ - POST http://127.0.0.1:5000/check
 {"points":[
 	{ 
 		"x": 2.0,

@@ -6,9 +6,9 @@ RESTAPI: a Flask-based rest api wrapper around "anomaly", a subpackage containin
 
 If you want to start the Flask aplication, you can simply type (in the api folder)
 
-export FLASK_APP api
-export FLASK_ENV development
-flask run
+ - export FLASK_APP api
+ - export FLASK_ENV development
+ - flask run
 
 this will start a flask server on 127.0.0.1:5000
 

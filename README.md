@@ -1,6 +1,6 @@
 # An anomaly detection algorithm POC
 
-this repo contains "RESTAPI", a Flask-based rest api wrapper around "anomaly", a subpackage containing a k-nearest neighbor anomaly detection algorithm.
+This repo contains "RESTAPI", a Flask-based rest api wrapper around "anomaly", a subpackage containing a k-nearest neighbor anomaly detection algorithm.
 
 If you want to start the Flask aplication, you can simply type (in the api folder)
 

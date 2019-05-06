@@ -1,10 +1,10 @@
 # An anomaly detection algorithm POC
 
-this repo contains two packages:
-* anomaly: contains a k-nearest neighbor anomaly detection algorithm
-* RESTAPI: a Flask-based rest api wrapper around "anomaly"
+this repo contains a demo package 
 
-If you want to deploy the Flask aplication, you should copy the anomaly package inside the flask app folder, and simply type
+RESTAPI: a Flask-based rest api wrapper around "anomaly", a subpackage containing a k-nearest neighbor anomaly detection algorithm
+
+If you want to start the Flask aplication, you can simply type
 
 python -m flask run 
 
@@ -20,6 +20,6 @@ dependencies:
 
 Example data are found in the data folder
 
-Both packages have unit tests covering most of the exposed functionality
+We have unit tests covering most of the exposed functionality; you find them in the api and anomaly subfolders
 
 A jupyter notebook with a first prototype is found in the notebooks folder

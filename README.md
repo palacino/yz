@@ -6,7 +6,9 @@ this repo contains two packages:
 
 If you want to deploy the Flask aplication, you should copy the anomaly package inside the flask app folder, and simply type
 
-python -m flask run in the api folder
+python -m flask run 
+
+in the api folder
 
 dependencies:
 * numpy

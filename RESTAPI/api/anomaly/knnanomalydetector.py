@@ -1,4 +1,4 @@
-from neighborfinder import NeighborFinder
+from api.anomaly.neighborfinder import NeighborFinder
 import pandas as pd
 import numpy as np
 import time

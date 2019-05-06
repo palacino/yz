@@ -1,12 +1,12 @@
 from unittest import TestCase
-from knnanomalydetector import KNNAnomalyDetector
+from api.anomaly.knnanomalydetector import KNNAnomalyDetector
 import numpy as np
 import math
 
 
 class TestKNNAnomalyDetector(TestCase):
     def setUp(self) -> None:
-        self.detector = KNNAnomalyDetector('../../../data/anomaly.csv', search_type='mykdtree')
+        self.detector = KNNAnomalyDetector('../../../../data/anomaly.csv', search_type='mykdtree')
         self.single_point = np.array([[2, 3]])
         self.multiple_points = np.array([[2, 3], [4, 5]])
         self.anomaly = np.array([[10, 10]])

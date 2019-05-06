@@ -1,12 +1,12 @@
 from unittest import TestCase
-from neighborfinder import NeighborFinder
+from api.anomaly.neighborfinder import NeighborFinder
 import pandas as pd
 import numpy as np
 
 
 class TestNeighborFinder(TestCase):
     def setUp(self) -> None:
-        self.data = np.array(pd.read_csv('../../../data/anomaly.csv', skip_blank_lines=True, header=None))
+        self.data = np.array(pd.read_csv('../../../../data/anomaly.csv', skip_blank_lines=True, header=None))
         self.neighbor_finder_brute_force = NeighborFinder(self.data, search_type='brute-force')
         self.neighbor_finder_kdtree = NeighborFinder(self.data, search_type='kdtree')
         self.neighbor_finder_mykdtree = NeighborFinder(self.data, search_type='mykdtree')

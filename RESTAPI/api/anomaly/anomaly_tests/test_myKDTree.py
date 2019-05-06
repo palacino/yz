@@ -1,5 +1,5 @@
 from unittest import TestCase
-from mykdtree import MyKDTree
+from api.anomaly.mykdtree import MyKDTree
 import numpy as np
 from scipy.spatial import KDTree
 

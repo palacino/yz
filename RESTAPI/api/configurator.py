@@ -1,6 +1,6 @@
 # from OpenSSL import SSL
 from api.plotgenerator import PlotGenerator
-from anomaly.knnanomalydetector import KNNAnomalyDetector
+from api.anomaly.knnanomalydetector import KNNAnomalyDetector
 
 
 class Configurator:

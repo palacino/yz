@@ -1,7 +1,7 @@
 import numpy as np
-from neighborfinder import NeighborFinder
+
 import pandas as pd
-from knnanomalydetector import KNNAnomalyDetector
+from api.anomaly.knnanomalydetector import KNNAnomalyDetector
 
 ref_file_path = '../../data/anomaly.csv'
 data = np.array(pd.read_csv(ref_file_path, skip_blank_lines=True, header=None))

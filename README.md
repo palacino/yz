@@ -1,8 +1,6 @@
 # An anomaly detection algorithm POC
 
-this repo contains a demo package 
-
-RESTAPI: a Flask-based rest api wrapper around "anomaly", a subpackage containing a k-nearest neighbor anomaly detection algorithm
+this repo contains "RESTAPI", a Flask-based rest api wrapper around "anomaly", a subpackage containing a k-nearest neighbor anomaly detection algorithm.
 
 If you want to start the Flask aplication, you can simply type (in the api folder)
 
@@ -36,9 +34,9 @@ exposing the following REST API:
 	}
 ]}
 
-### Note the the app DOES NOT accept relaxed json, so quotes are necessary
+**Note the the app DOES NOT accept relaxed json, so quotes are necessary**
 
-Poissibly you have to change the folder settings in the config.py file. Note that for one api call, a html page is generated containing a plot displaying the reference data overlaid with the anomaly status of a query point
+Possibly you have to change the folder settings in the config.py file. 
 
 dependencies:
 * numpy
@@ -50,6 +48,6 @@ dependencies:
 
 Example data are found in the data folder
 
-We have unit tests covering most of the exposed functionality; you find them in the api and anomaly subfolders
+We have unit tests covering most of the exposed functionality; you'll find them in the api and anomaly subfolders
 
 A jupyter notebook with a first prototype is found in the notebooks folder

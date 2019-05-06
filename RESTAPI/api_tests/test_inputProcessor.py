@@ -1,5 +1,5 @@
 from unittest import TestCase
-from inputprocessor import InputProcessor
+from api.inputprocessor import InputProcessor
 from flask import json
 
 

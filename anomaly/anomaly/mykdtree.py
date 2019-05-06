@@ -61,11 +61,11 @@ class MyKDTree:
         dimension = node[4] % self.__nc
         left = node[2]
         right = node[3]
-        distance_to_splitting_plane = self.__distance_to_splitting_plane(point, node_location, dimension)
+        distance_to_splitting_plane_sq,is_left = self.__sq_distance_to_splitting_plane(point, node_location, dimension)
 
         # do left and right? do smallest first
-        if abs(distance_to_splitting_plane) > n_smallest:
-            if distance_to_splitting_plane < 0:
+        if distance_to_splitting_plane_sq > n_smallest:
+            if  is_left:
                 n_smallest = self.__query_node(priority_queue, n_smallest, point, left, n)
             else:
                 n_smallest = self.__query_node(priority_queue, n_smallest, point, right, n)
@@ -76,7 +76,7 @@ class MyKDTree:
                 closest_n_neighbors = heapq.nsmallest(n, priority_queue)
                 n_smallest = closest_n_neighbors[n - 1][0]
 
-            if distance_to_splitting_plane < 0:
+            if is_left:
                 n_smallest = self.__query_node(priority_queue, n_smallest, point, left, n)
                 n_smallest = self.__query_node(priority_queue, n_smallest, point, right, n)
             else:
@@ -86,8 +86,10 @@ class MyKDTree:
         return n_smallest
 
     @staticmethod
-    def __distance_to_splitting_plane(point, node_location, dimension):
-        return point[dimension] - node_location[dimension]
+    def __sq_distance_to_splitting_plane(point, node_location, dimension):
+        distance = (point[dimension] - node_location[dimension]) ** 2
+        is_left = (point[dimension] - node_location[dimension]) < 0
+        return distance, is_left
 
     @staticmethod
     def __distance_to_node_sq(point, node_location):

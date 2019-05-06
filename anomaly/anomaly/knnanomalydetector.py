@@ -25,6 +25,10 @@ class KNNAnomalyDetector:
         try:
             distance_to_neighbors = self.__neighbor_finder.find_neighbors(point, n_neighbors)
             score = np.mean(distance_to_neighbors)
+            if score > threshold:
+                is_anomaly = 1
+            else:
+                is_anomaly = 0
         except Exception as e:
             message = 'something went wrong: {}'.format(e)
 

@@ -20,7 +20,6 @@ class NeighborFinder:
             raise Exception('unknown search type: {}'.format(search_type))
 
     def find_neighbors(self, point, n=5):
-        start_t = time.time()
         result = None
         if self.__search_type == 'kdtree':
             result = self.__find_from_kdtree(point, n)
@@ -28,9 +27,7 @@ class NeighborFinder:
             result = self.__find_from_mykdtree(point, n)
         elif self.__search_type == 'brute-force':
             result = self.__find_brute_force(point, n)
-        end_t = time.time()
-        query_time = end_t - start_t
-        return result, query_time
+        return result
 
     def __find_from_kdtree(self, point, n):
         distances = self.__kdtree.query(point, n)
@@ -46,4 +43,4 @@ class NeighborFinder:
             squared_distances[i] = (point[0] - self.__data[i, 0]) ** 2 + (point[1] - self.__data[i, 1]) ** 2
 
         sorted_sq_distances = np.sort(squared_distances)
-        return np.sqrt(sorted_sq_distances[0:n - 1])
+        return np.sqrt(sorted_sq_distances[0:n])

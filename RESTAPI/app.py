@@ -9,11 +9,19 @@ app = Flask(__name__, template_folder='./templates')
 app.config.from_object('config')
 configurator = Configurator(app)
 plot_generator = configurator.create_plot_generator()
+anomaly_detector = configurator.create_anomaly_detector()
 
 
 @app.route('/')
 def hello_world():
     return 'Hello World!'
+
+
+@app.route('/check/', methods=['GET'])
+def check_point():
+    x = request.args.get('x', type=str)
+    y = request.args.get('y', type=int)
+    is_anomaly, score, message, query_time = anomaly_detector.detect_anomaly((x, y))
 
 
 @app.route('/demoplot/', methods=['GET'])

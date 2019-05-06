@@ -1,5 +1,6 @@
 from OpenSSL import SSL
 from plotgenerator import PlotGenerator
+from anomaly.knnanomalydetector import KNNAnomalyDetector
 
 
 class Configurator:
@@ -8,7 +9,7 @@ class Configurator:
         self.__app_root_folder = app.root_path
 
     def temp_folder(self):
-        return self.__app_root_folder+'/static/temp'
+        return self.__app_root_folder + '/static/temp'
 
     def create_plot_generator(self):
         plot_generator = PlotGenerator(self.__app_root_folder)
@@ -22,3 +23,9 @@ class Configurator:
         cert_path = security_folder + '/cert.pem'
         context.use_privatekey_file(key_path)
         context.use_certificate_file(cert_path)
+
+    def create_anomaly_detector(self):
+        ref_data = self.__config_object.get('REFERENCE_DATA_PATH')
+        search_type = self.__config_object.get('KNN_SEARCH_TYPE')
+        anomaly_detector = KNNAnomalyDetector(ref_data, search_type)
+        return anomaly_detector

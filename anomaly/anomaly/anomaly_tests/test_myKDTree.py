@@ -43,7 +43,7 @@ class TestMyKDTree(TestCase):
         root = tree.root()
         self.assertEqual(root[0], 6, 'incorrect root')
         self.assertEqual(root[1][0], 5, 'incorrect root x')
-        self.assertEqual(root[1][1], 4, 'incorrect root x')
+        self.assertEqual(root[1][1], 4, 'incorrect root y')
 
     def test_tree_query(self):
         tree = MyKDTree(self.test_data1)

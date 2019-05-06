@@ -1,6 +1,11 @@
 div.plot
 {
-    width: 800px;
+    float:left;
+    text-align: center;
+}
+img.plot
+{
+    display:block;
 }
 p.caption
 {
